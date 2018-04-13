@@ -16,7 +16,7 @@ class wire {
 	void setState(char st);
 	private:
 	string name;
-	int number;
+	int IDnumber;
 	char state; //0,1,X
 	vector <gate*>;
 }
