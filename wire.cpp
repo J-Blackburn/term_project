@@ -5,7 +5,7 @@ using namespace std;
 
 wire::wire(string nm, int num, char st = 'X') {
 	name = nm;
-	number = num;
+	IDnumber = num;
 	state = st;
 }
 
