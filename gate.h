@@ -12,7 +12,7 @@ using namespace std;
 
 class gate {
 	public:
-	gate(string tp, string nm, wire *in1, wire *in2, wire *out, int dl);
+	gate(string tp, wire *in1, wire *in2, wire *out, int dl);
 	void compute(); //figure output from inputs and gate type
 	private:
 	string type, name;
