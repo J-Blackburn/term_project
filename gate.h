@@ -15,7 +15,7 @@ class gate {
 	gate(string tp, wire *in1, wire *in2, wire *out, int dl);
 	void compute(); //figure output from inputs and gate type
 	private:
-	string type, name;
+	string type;
 	wire *input1,*input2,*output;
 	int delay;
 }

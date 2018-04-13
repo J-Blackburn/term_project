@@ -3,9 +3,9 @@
 
 using namespace std;
 
-gate::gate(string tp, string nm, wire *in1, wire *in2, wire *out, int dl) {
+gate::gate(string tp, wire *in1, wire *in2 = NULL, wire *out, int dl) {
 	type = tp;
-	name = nm;
+	//name = nm;
 	input1 = in1;
 	input2 = in2;
 	output = out;
