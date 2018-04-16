@@ -14,8 +14,8 @@ bool readEventFile(string eventFile) {
 		while (counter < 1000) {
 			string wireName;
 			int time;
-			bool value;
-			myFile >> dummy >> wireName >> time >> value;
+			bool newValue;
+			myFile >> dummy >> wireName >> time >> newValue;
 			//TODO: Insert this data into the event and priority-queue.
 			if (myFile.eof()) { //If end of file reached.
 				myFile.close();
