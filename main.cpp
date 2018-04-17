@@ -44,7 +44,7 @@ int main (){
 
 	bool goodRead;
 	goodRead = readEventFile(fileName);
-	if (!goodRead) {
+	if (!goodRead) { //can just to if(!readEventFile(fileName)) -josh
 		cout << "Error: The vector file could not be read or doesn't exist." << endl;
 			return 1;
 	}
