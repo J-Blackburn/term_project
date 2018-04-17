@@ -1,0 +1,2 @@
+- figure out what to do with gate names
+- how to convert integer numbers to wire pointers in circuit description 
