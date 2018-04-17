@@ -20,7 +20,7 @@ void wireInitialization(string ln) {
 	cout << "Type: " << wireType << " Name: " << wireName;
 	cout << " Number: " << wireNumber << endl;
 	//create wire
-	wire myWire(wireName, wireNumber);
+	//wire myWire(wireName, wireNumber, 'x');
 }
 
 void gateInitialization(string ln) {
@@ -52,7 +52,7 @@ void gateInitialization(string ln) {
 	cout << " Input 1: " << in1 << " Input 2: " << in2 ;
 	cout << " Output: " << out << endl;
 	//create gate
-	gate myGate(gateType, /*name, wire* in1, wire* in2, wire* out,*/gateDelay)
+	//gate myGate(gateType, /*name, wire* in1, wire* in2, wire* out,*/gateDelay)
 }
 
 bool importFile(char *input) {
@@ -73,6 +73,13 @@ bool importFile(char *input) {
 	return 1;
 }
 
+int main(int argc, char **argv) {
+	if(importFile(argv[1]))
+		cout << "SUCCESSFUL PARSING" << endl;
+	else 
+		cout << "FAILED PARSING" << endl;
+	return 0;
+}
 int main(int argc, char **argv) {
 	if(importFile(argv[1]))
 		cout << "SUCCESSFUL PARSING" << endl;
