@@ -12,8 +12,8 @@ Gate::Gate(string tp, Wire *in1, Wire *in2, Wire *out, int dl) {
 
 bool Gate::compute() {
 	char in1, in2, out;
-	in1 = (*input1).getState();
-	in2 = (*input2).getState();
+	in1 = input1->getState();
+	in2 = input2->getState();
 
 	if(type == "AND") {
 		if(in1 == '0' || in2 == '0') {
@@ -96,7 +96,7 @@ bool Gate::compute() {
 		cout << "missing/invalid gate type" << endl;
 		return 0;
 	}
-	output->setState(out)
+	output->setState(out);
 	cout << out << endl;
 	return 1;
 }
