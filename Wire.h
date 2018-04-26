@@ -5,7 +5,8 @@
 
 class Gate;
 
-#include<vector>
+//#include "Gate.h"
+//#include <vector>
 #include <iostream>
 #include <string>
 
@@ -18,9 +19,13 @@ class Wire {
 	char getState();
 	string getName();
 	int getNumber();
+	string getHistory();
+	void updateHistory(char newPoint);
+	
 	private:
 	string name;
 	int number;
 	char state; //0,1,X
-	vector <Gate*> gts;
+	string history = "";
+//	vector <Gate*> gts;
 };
