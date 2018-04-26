@@ -23,3 +23,11 @@ string Wire::getName() {
 int Wire::getNumber() {
 	return number;
 }
+
+string Wire::getHistory() {
+	return history;
+}
+
+void Wire::updateHistory(char newPoint) {
+	history += newPoint;
+}
