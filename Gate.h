@@ -5,6 +5,7 @@
 
 class Wire;
 
+#include "Wire.h"
 #include <iostream>
 #include <string>
 using namespace std;
