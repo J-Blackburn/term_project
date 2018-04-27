@@ -3,15 +3,16 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <queue>
 //include custom classes
 #include "Gate.h"
 #include "Wire.h"
-#include "Event.h" // I'm guessing this is the name for the event class
+#include "Event.h" 
 
 using namespace std;
 
 //functions
-void wireInitialization(string ln) {
+void wireInitialization(string ln, vector<Wire*> *wires) {
 	string wireType, wireName;
 	int wireNumber;
 	wireType = ln.substr(0, ln.find(" "));
@@ -23,10 +24,10 @@ void wireInitialization(string ln) {
 	wireNumber = stoi(ln.substr(0,ln.find(" ")));
 	//create wire
 	Wire myWire(wireName, wireNumber, 'X');
-	wires.push_back(&myWire);
+	wires->push_back(&myWire);
 }
 
-void gateInitialization(string ln) {
+void gateInitialization(string ln, vector<int*> *wires) {
 	string gateType, gd;
 	int gateDelay, in1, in2, out;
 	gateType = ln.substr(0, ln.find(" "));
@@ -55,9 +56,44 @@ void gateInitialization(string ln) {
 	cout << " Input 1: " << in1 << " Input 2: " << in2 ;
 	cout << " Output: " << out << endl;
 	//generate wire pointers
-	
+	bool in1Found = false;
+	for(int i = 0; i < wires->size(); i++) {
+		if((wire->at(i))->getNumber == in1) {
+			Wire *ptr1 = wires->at(i);
+			in1Found = true;
+			break;
+		}
+	}
+	bool in2Found = false;
+	for(int i = 0; i < wires->size(); i++) {
+		if((wire->at(i))->getNumber == in2) {
+			Wire *ptr2 = wires->at(i);
+			in2Found = true;
+			break;
+		}
+	}
+	bool outFound = false;
+	for(int i = 0; i < wires->size(); i++) {
+		if((wire->at(i))->getNumber == out) {
+			Wire *ptr3 = wires->at(i);
+			outFound = true;
+			break;
+		}
+	}
+	if(!in1Found) {
+		Wire in1Wire("arbitrary_name", in1, 'X');
+		Wire *ptr1 = &in1Wire;
+	}
+	if(!in2Found) {
+		Wire in2Wire("arbitrary_name", in2, 'X');
+		Wire *ptr2 = &in2Wire;
+	}
+	if(!outFound) {
+		Wire outWire("arbitrary_name", out, 'X');
+		Wire *ptr3 = &outWire;
+	}
 	//create gate
-	//gate myGate(gateType, /*name, wire* in1, wire* in2, wire* out,*/gateDelay)
+	gate myGate(gateType, ptr1, ptr2, ptr3, gateDelay)
 }
 
 bool parseCircuitFile(string fileName) {
@@ -101,23 +137,16 @@ bool parseInitialConditionsFile(string eventFile) {
 	myFile.close();
 	return false; //Read failed.
 }
-/*
-circuit parsing:
-  *importFileCircuitDefinition
-  *wireInitialization
-  *gateInitialization
-initial conditions parsing
-  *readEventFile
-*printHistory
-*/
+
 
 //main loop
 int main(int argc, char **argv) {
 	//create a vector of wire pointers to keep track of wires
+	priority_queue<Event> eventQueue;
 	vector<*Wire> wires;
 	string fileName = argv[1];
 	//parse the circuit description file
-	if(!parseCircuitFile(fileName)) {
+	if(!parseCircuitFile(fileName, &wires)) {
 		cout << "Error: The circuit description file could not be read or doesn't exist." << endl;
 		return 1;
 	}
