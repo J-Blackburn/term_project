@@ -2,6 +2,7 @@
 void printHistories(vector<Wire*> *wires) {
 	
 for(int i = 0; i < wires->size(); i++) {
+	cout << "Wire Number " << (wires->at(i))->getNumber() << ": ";
 	cout << (wires->at(i))->getHistory() << "  ";
 	string str = (wires->at(i))->getHistory();
 	while(str.find('0') < 100) {
