@@ -27,7 +27,7 @@ void wireInitialization(string ln, vector<Wire*> *wires) {
 	wires->push_back(&myWire);
 }
 
-void gateInitialization(string ln, vector<int*> *wires) {
+void gateInitialization(string ln, vector<Wire*> *wires) {
 	string gateType, gd;
 	int gateDelay, in1, in2, out;
 	gateType = ln.substr(0, ln.find(" "));
@@ -96,16 +96,16 @@ void gateInitialization(string ln, vector<int*> *wires) {
 	gate myGate(gateType, ptr1, ptr2, ptr3, gateDelay)
 }
 
-bool parseCircuitFile(string fileName) {
+bool parseCircuitFile(string fileName, vector<Wire*> *wires) {
 	fileName += ".txt";
 	ifstream myfile (fileName);
 	if(myfile.is_open()) {
 		while(getline(myfile,line)) {
 			if(line.substr(0,line.find(" ")) == "CIRCUIT") {}
 			else if(line.substr(0,line.find(" ")) == "INPUT" || line.substr(0,line.find(" ")) == "OUTPUT")
-				wireInitialization(line);
+				wireInitialization(line, wires);
 			else
-				gateInitialization(line);
+				gateInitialization(line, wires);
 		}
     myfile.close();
 	}
@@ -159,7 +159,7 @@ int main(int argc, char **argv) {
 	//run events to simulate circuit
 	
 	//print history/results
-	
+	//printWireHistories
 	return 0;
 }
 
